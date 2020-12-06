@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+  <title>래치(Latch)</title>
+  <meta charset="utf-8">
+</head>
+<body>
+  <a href ="index.html"><img src="H.png" width="100"></a>
+  <ol>
+    <li><b><a href="1. 래치(Latch).html" title="래치">래치(Latch)</a></b></li>
+    <li><b><a href="2. 플립플롭(Flip-flop).html" title="플립플롭">플립플롭(Filp-Fiop)</a></b></li>
+    <li><b><a href="3. 멀티바이브레이터(Multivibrator).html" title="멀티바이브레이터(Multivibrator)">멀티바이브레이터(Multivibrator)</a></b></li>
+    <li><b><a href="4. 카운터(Counter).html" title="카운터(Counter)">카운터(Counter)</a></b></li>
+    <li><b><a href="5. 레지스터(Register).html" title="레지스터(Register)">레지스터(Register)</a></b></li>
+
+ </ol>
+<p>
+  <h2>래치(Latch)</h2>
+  <strong>래치</strong>는 1비트의 정보를 기억하는 소자로, 정보를 일시적으로 저장할 수 있는 기능을 갖는 회로다.<br>
+    래치의 종류는 SR래치, D래치가 있다.
+    <h3>1. SR래치</h3><br>
+    SR래치는 크게 <strong><u>NOR게이트를 이용한 SR래치</u></strong>와 <strong><u>NAND게이트를 이용한 SR래치</u></strong>가 있다.</p>
+    <strong>- NOR게이트를 이용한 SR래치(정논리)</strong><br>
+    아래에 있는 블럭도와 회로도는 NOR SR래치이다.<br>
+    <br><img src="SR.png" width="300">
+    <img src="SR1.png" width="300"><br>
+    먼저, NOR SR래치는 정논리 회로로 높은 전압 상태(H)를 '1'로 할당하고,
+    낮은 전압 상태(L)를 '0'로 할당하는 논리회로이다.<br>
+    이 블럭도와 회로도를 보면
+    NOR SR래치는 2개의 입력(S, R)을 가진 한 쌍의 NOR게이트로 구성되어져있고,
+    입력단자 S는 set, R은 reset의 첫 글자를 딴 것으로, 출력을 각각 Q와 /Q로 표시되어져 있는 것을 볼 수 있다.
+    동작원리에 대한 것을 간략히 표로 정리해보면 다음과 같다.<br>
+    <table border="2">
+    <tr>
+      <td>&nbsp;S&nbsp;</td> <td>&nbsp;R&nbsp;</td> <td>&nbsp;Q&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;0</td> <td>&nbsp;0</td> <td>&nbsp;불변(Hold)</td>
+    </tr>
+    <tr>
+      <td>&nbsp;0</td> <td>&nbsp;1</td> <td>&nbsp;0(Reset)</td>
+    </tr>
+    <tr>
+      <td>&nbsp;1</td> <td>&nbsp;0</td> <td>&nbsp;1(Set)</td>
+    </tr>
+    <tr>
+      <td>&nbsp;1</td> <td>&nbsp;1</td> <td>&nbsp;X(inhibit)</td>
+    </tr>
+    </table>
+    <p>표에 대한 데이터를 정리해보면 S와 R이 모두 0일때 출력 상태가 <strong>Hold</strong>, 즉 이전 상태로 <strong>유지</strong>한다는 의미이고,
+    S가 0이고 R이 1이면 출력상태는 <strong>Reset</strong>으로 0으로 출력한다는 의미이고, 반대로 S가 1, R이 0이면 출력상태는 <strong>Set</strong>으로 1로 출력한다는 의미이다.
+    S와 R 모두가 1이 들어오면 <strong>inhibit, 금지</strong>한다고 나와있는데, 이는 NOR에 하나라도 1이 입력되면 무조건 0으로 출력된다. 즉 Q와 /Q가 모두 0으로 출력된다는 의미인데,
+    NOT게이트에 의하면 입력이 1이면 출력은 0으로 나와야하고, 입력이 0이면 출력은 1로 나와야한다. 즉 모두가 0으로 출력된다는 것은 정의할 수 없기 때문에 이를 <strong>금지</strong>라고 정의할 수 있다.</p>
+    <br><br><strong>- NAND게이트를 이용한 SR래치(부논리)</strong><br>
+
+    그래서 동작원리는 동일한데 출력상태만 다르다.
+    아래에 있는 블럭도와 회로도는 NAND SR래치이다.<br>
+    <br><img src="NANDSR.png" width="300">
+    <img src="NANDSR1.png" width="300"><br>
+    NAND SR래치의 구성도는 2개의 입력(/S, /R)을 가진 한 쌍의 NAND게이트로 구성되어져 있다.
+    NAND SR래치는 NOR SR래치와 달리 부논리 회로로 높은 전압 상태(H)를 0으로, 낮은 전압 상태를(L)로 할당하는 회로이다.
+    그래서 동작원리는 동일한데 출력상태만 다르다.
+    따라서 표롤 정리해보면 다음과 같다.<br>
+    <table border="2">
+    <tr>
+      <td>&nbsp;/S&nbsp;</td> <td>&nbsp;/R&nbsp;</td> <td>&nbsp;Q&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;1</td> <td>&nbsp;1</td> <td>&nbsp;불변(Hold)</td>
+    </tr>
+    <tr>
+      <td>&nbsp;1</td> <td>&nbsp;0</td> <td>&nbsp;0(Reset)</td>
+    </tr>
+    <tr>
+      <td>&nbsp;0</td> <td>&nbsp;1</td> <td>&nbsp;1(Set)</td>
+    </tr>
+    <tr>
+      <td>&nbsp;0</td> <td>&nbsp;0</td> <td>&nbsp;X(inhibit)</td>
+    </tr>
+    </table>
+    <p>표에 대한 데이터를 정리해보면 /S와 /R이 모두 1일때 출력 상태가 <strong>Hold</strong>, 즉 이전 상태로 <strong>유지</strong>한다는 의미이고,
+    /S가 1이고 /R이 0이면 출력상태는 <strong>Reset</strong>으로 0으로 출력한다는 의미이고, 반대로 /S가 0, /R이 1이면 출력상태는 <strong>Set</strong>으로 1로 출력한다는 의미이다.
+    /S와 /R 모두가 1이 들어오면 <strong>inhibit, 금지</strong>한다고 나와있는데, 이는 NAND에 하나라도 0이 입력되면 무조건 1으로 출력된다. 즉 Q와 /Q가 모두 1으로 출력된다는 의미인데,
+    이는 NOR SR래치에서 설명한 것과 같이 NOT게이트에 입력이 1이면 출력은 0으로 나와야하고, 입력이 0이면 출력은 1로 나와야한다. 즉 모두가 1으로 출력된다는 것은 정의할 수 없기 때문에 이를 <strong>금지</strong>라고 정의할 수 있다.</p>
+    <p><h3>- D래치에 대한 내용은 아래의 링크에 들어가면 볼 수 있다.-</h3></p><br>
+    <b><a href="D래치.html" title="D래치">D래치(D-Latch)</a></b>
+
+</body>
+</html>
